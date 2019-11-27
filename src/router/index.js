@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import ApartmentsList from "../views/ApartmentsList.vue";
+import ApartmentsView from "../views/ApartmentsView.vue";
 
 Vue.use(VueRouter);
 
@@ -10,7 +10,7 @@ export default new VueRouter({
     {
       path: "/",
       name: "home",
-      component: ApartmentsList
+      component: ApartmentsView
     },
     {
       path: "/mybookings",

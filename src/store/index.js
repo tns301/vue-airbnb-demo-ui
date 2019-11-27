@@ -6,10 +6,28 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    apartments: null
+    apartments: null,
+    autocomplete: {
+      city: [],
+      country: [],
+      rating: ["low to high", "high to low"],
+      price: ["low to high", "high to low"]
+    }
   },
   mutations: {
     setApartments(state, payload) {
+      let city = [],
+        country = [];
+
+      for (let i = 0; i < payload.length; i++) {
+        city.push(payload[i].city);
+        country.push(payload[i].country);
+
+        Object.assign(payload[i], { booked: false });
+      }
+
+      state.autocomplete.city = city;
+      state.autocomplete.country = country;
       state.apartments = payload;
     }
   },
@@ -32,6 +50,9 @@ export default new Vuex.Store({
   getters: {
     returnApartments(state) {
       return state.apartments;
+    },
+    returnAutocomplete(state) {
+      return state.autocomplete;
     }
   }
 });

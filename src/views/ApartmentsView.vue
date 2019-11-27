@@ -1,16 +1,12 @@
 <template>
-  <div class="apparments-list my-6">
-    <v-chip-group active-class="primary" mandatory class="view-switch">
+  <div class="apparments-list my-2">
+    <v-chip-group active-class="primary" mandatory>
       <v-chip @click="toggleView(1)"><i class="fas fa-table mr-2"></i> Card</v-chip>
       <v-chip @click="toggleView(2)"><i class="fas fa-list mr-2"></i> List</v-chip>
     </v-chip-group>
+
     <template v-if="currentView === 1">
-      <apartment-card
-        v-for="(eachApartment, key) in returnApartments"
-        :key="key"
-        :apartment="eachApartment"
-      >
-      </apartment-card>
+      <apartment-list :data="returnApartments"></apartment-list>
     </template>
     <template v-else>
 
@@ -20,12 +16,12 @@
 
 <script>
 import { mapGetters } from "vuex";
-import ApartmentCard from "../components/ApartmentCard";
+import ApartmentList from "../components/ApartmentList";
 
 export default {
   name: "apartments-list",
   components: {
-    ApartmentCard
+    ApartmentList
   },
   data() {
     return {
