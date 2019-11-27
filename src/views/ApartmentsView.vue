@@ -9,7 +9,7 @@
       <apartment-list :data="returnApartments"></apartment-list>
     </template>
     <template v-else>
-
+      <apartment-table :data="returnApartments"></apartment-table>
     </template>
   </div>
 </template>
@@ -17,11 +17,13 @@
 <script>
 import { mapGetters } from "vuex";
 import ApartmentList from "../components/ApartmentList";
+import ApartmentTable from "../components/ApartmentTable";
 
 export default {
   name: "apartments-list",
   components: {
-    ApartmentList
+    ApartmentList,
+    ApartmentTable
   },
   data() {
     return {

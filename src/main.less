@@ -8,5 +8,19 @@
 	text-transform: capitalize
 }
 
+::-webkit-scrollbar {
+	width: 3px;
+	pointer-events: none;
+}
+::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: 15px;
+}
+::-webkit-scrollbar-thumb {
+	background: #d4d4d4;
+	border-radius: 15px;
+	height: 40px;
+}
+
 @import "./styles/apartment-card.less";
-@import "./styles/apartment-list.less";
+@import "./styles/apartment-table.less";
