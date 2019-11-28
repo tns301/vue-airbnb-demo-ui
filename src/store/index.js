@@ -29,6 +29,23 @@ export default new Vuex.Store({
       state.autocomplete.city = city;
       state.autocomplete.country = country;
       state.apartments = payload;
+    },
+    setBookedApartment(state, payload) {
+      for (let i = 0; i < state.apartments.length; i++) {
+        if (state.apartments[i].id === payload) {
+          state.apartments[i].booked = !state.apartments[i].booked;
+          state.apartments[i].available = !state.apartments[i].available;
+          break;
+        }
+      }
+    },
+    setCanceledBookings(state) {
+      for (let i = 0; i < state.apartments.length; i++) {
+        if (state.apartments[i].booked) {
+          state.apartments[i].booked = !state.apartments[i].booked;
+          state.apartments[i].available = !state.apartments[i].available;
+        }
+      }
     }
   },
   actions: {
@@ -45,6 +62,12 @@ export default new Vuex.Store({
             reject(err);
           });
       });
+    },
+    bookApartment(context, payload) {
+      context.commit("setBookedApartment", payload);
+    },
+    cancelAllBookings(context) {
+      context.commit("setCanceledBookings");
     }
   },
   getters: {

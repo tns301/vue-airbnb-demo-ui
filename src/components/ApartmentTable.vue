@@ -14,7 +14,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in paginatedItems" :key="item.id" :class="{ disabled: !item.available }" v-on:dblclick="reserverApartment()">
+          <tr v-for="item in paginatedItems" :key="item.id" :class="{ disabled: !item.available }" v-on:dblclick="bookApartment(item.id)">
             <td>{{ item.country }}</td>
             <td>{{ item.city }}</td>
             <td>{{ item.price }}</td>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   name: "apartment-table",
   props: {
@@ -52,9 +53,7 @@ export default {
     }
   },
   methods: {
-    reserverApartment() {
-      console.log('test')
-    }
+    ...mapActions(["bookApartment"])
   },
   computed: {
     paginatedItems() {

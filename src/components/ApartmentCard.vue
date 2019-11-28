@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto my-6" max-width="374" :disabled="!apartment.available">
+  <v-card class="mx-auto my-6" max-width="374" :disabled="!apartment.available && $route.name !== 'mybookings'">
     <v-img
       height="250"
       :src="apartment.image.src"
@@ -24,14 +24,7 @@
           <template v-if="showFullText">
             {{ description.end }}
           </template>
-          <v-btn
-            color="primary"
-            small
-            text
-            :ripple="false"
-            @click="toggleFullText"
-            >{{ description.button }}</v-btn
-          >
+          <v-btn color="primary" small text :ripple="false" @click="toggleFullText">{{ description.button }}</v-btn>
         </template>
       </div>
     </v-card-text>
@@ -46,12 +39,13 @@
       <v-chip outlined><i class="fas fa-users mr-2"></i> {{ apartment.numberOfGuests }}</v-chip>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="primary" text>Reserve</v-btn>
+      <v-btn color="primary" text @click="bookApartment(apartment.id)">{{ reserveButton }}</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   name: "apartment-card",
   data() {
@@ -63,7 +57,8 @@ export default {
         button: "Read more...",
         start: "",
         end: ""
-      }
+      },
+      reserveButton: 'Reserve'
     };
   },
   props: {
@@ -83,6 +78,10 @@ export default {
         descLength
       );
     }
+
+    if (this.$route.name === 'mybookings') {
+      this.reserveButton = 'Cancel Booking'
+    }
   },
   methods: {
     toggleFullText() {
@@ -91,7 +90,8 @@ export default {
         : "...Hide more";
 
       this.showFullText = !this.showFullText;
-    }
+    },
+    ...mapActions(["bookApartment"])
   }
 };
 </script>
