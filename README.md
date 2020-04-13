@@ -1,5 +1,3 @@
-# vue-airbnb-demo-ui
-
 ## Tools Used:
 * Vue
 * Vuetify
