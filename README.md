@@ -1,4 +1,4 @@
-# airbnb-stefan-tudoran
+# vue-airbnb-demo-ui
 
 ## Project setup
 ```
