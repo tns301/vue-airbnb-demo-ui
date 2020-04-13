@@ -1,5 +1,10 @@
 # vue-airbnb-demo-ui
 
+## Tools Used:
+* Vue
+* Vuetify
+* SASS
+
 ## Project setup
 ```
 npm install
@@ -14,8 +19,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Tools Used:
-* Vue
-* Vuetify
-* SASS
